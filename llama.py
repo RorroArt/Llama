@@ -12,7 +12,6 @@ def rms_norm(x, weight, eps=1e-5):
     return normed_x * weight
 
 def apply_rotary_emb(xq, xk, freqs_cos, freqs_sin):
-    # ["B, L, H, D"] -> ["B, L, H, D//2, 2"]
     xq = xq.astype(jnp.float32)
     xk = xk.astype(jnp.float32)
     xqri = einops.rearrange(xq, 'b l h (d r) -> b l h d r', r=2)
